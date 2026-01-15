@@ -1,0 +1,10 @@
+spring:
+
+  web:
+    error:
+      include-message: always
+      include-path: always
+
+
+  profiles:
+    active: prod
