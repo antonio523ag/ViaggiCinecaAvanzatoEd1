@@ -1,6 +1,5 @@
 package dev.antoniogrillo.gestioneviaggi.service.impl;
 
-import dev.antoniogrillo.gestioneviaggi.entity.Ruolo;
 import dev.antoniogrillo.gestioneviaggi.entity.Utente;
 import dev.antoniogrillo.gestioneviaggi.repository.UtenteRepository;
 import dev.antoniogrillo.gestioneviaggi.service.def.GestoreTokenService;
@@ -66,10 +65,6 @@ public class GestoreTokenImpl implements GestoreTokenService {
 
     private Date getExpiration(String token){
         return getClaims(token).getExpiration();
-    }
-
-    private Ruolo getRuolo(String token){
-        return Ruolo.valueOf(getClaims(token).get("ruolo").toString());
     }
 
     private boolean isValid(String token){

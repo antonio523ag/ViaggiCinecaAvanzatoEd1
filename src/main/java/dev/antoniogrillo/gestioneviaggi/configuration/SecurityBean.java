@@ -12,6 +12,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.util.Objects;
+
 @Configuration
 @RequiredArgsConstructor
 public class SecurityBean {
@@ -20,7 +22,7 @@ public class SecurityBean {
 
     @Bean
     protected UserDetailsService getService(){
-        return u->repo.findByEmail(u).orElse(null);
+        return u-> Objects.requireNonNull(repo.findByEmail(u).orElse(null));
     }
 
     @Bean
