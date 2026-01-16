@@ -1,10 +1,7 @@
 package dev.antoniogrillo.gestioneviaggi.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Past;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -24,7 +21,8 @@ public class RecensioneViaggio {
     @NotNull(message = "La data di ritorno è obbligatoria")
     @Past(message = "La data di ritorno deve essere nel passato")
     private LocalDate dataRitorno;
-    @Size(min = 1,max = 5,message = "Il voto deve essere compreso tra 1 e 5")
+    @Min(value = 1, message = "Il voto deve essere compreso tra 1 e 5")
+    @Max(value = 5, message = "Il voto deve essere compreso tra 1 e 5")
     private int voto;
     @NotBlank(message = "La descrizione della recensione è obbligatoria")
     private String descrizione;

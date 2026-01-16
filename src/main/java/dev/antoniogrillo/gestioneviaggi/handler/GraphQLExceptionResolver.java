@@ -4,6 +4,7 @@ import graphql.GraphQLError;
 import graphql.GraphqlErrorBuilder;
 import graphql.schema.DataFetchingEnvironment;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.validation.UnexpectedTypeException;
 import org.springframework.graphql.execution.DataFetcherExceptionResolverAdapter;
 import org.springframework.graphql.execution.ErrorType;
 import org.springframework.stereotype.Component;
@@ -13,8 +14,6 @@ public class GraphQLExceptionResolver extends DataFetcherExceptionResolverAdapte
 
     @Override
     protected GraphQLError resolveToSingleError(Throwable ex, DataFetchingEnvironment env) {
-        System.out.println("errore");
-        System.out.println(ex.getMessage());
 
         if (ex instanceof EntityNotFoundException) {
             return GraphqlErrorBuilder.newError(env)
@@ -36,8 +35,15 @@ public class GraphQLExceptionResolver extends DataFetcherExceptionResolverAdapte
                     .errorType(e.getCode())
                     .build();
         }
+
+        if(ex instanceof UnexpectedTypeException e){
+            return GraphqlErrorBuilder.newError(env)
+                    .message(e.getMessage())
+                    .errorType(ErrorType.BAD_REQUEST)
+                    .build();
+        }
         return GraphqlErrorBuilder.newError(env)
-                .message("Errore interno")
+                .message(ex.getClass()+" "+ex.getMessage())
                 .errorType(ErrorType.INTERNAL_ERROR)
                 .build();
     }
