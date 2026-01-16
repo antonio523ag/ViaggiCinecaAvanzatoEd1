@@ -1,6 +1,5 @@
 package dev.antoniogrillo.gestioneviaggi.service.impl;
 
-import dev.antoniogrillo.gestioneviaggi.entity.Meta;
 import dev.antoniogrillo.gestioneviaggi.entity.TipologiaMeta;
 import dev.antoniogrillo.gestioneviaggi.repository.TipologiaRepository;
 import dev.antoniogrillo.gestioneviaggi.service.def.TipologiaMetaService;

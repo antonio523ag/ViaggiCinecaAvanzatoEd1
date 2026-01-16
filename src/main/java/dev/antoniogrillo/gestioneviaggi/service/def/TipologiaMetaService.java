@@ -1,12 +1,8 @@
 package dev.antoniogrillo.gestioneviaggi.service.def;
 
-import dev.antoniogrillo.gestioneviaggi.dto.request.AggiungiTipologia;
-import dev.antoniogrillo.gestioneviaggi.dto.response.TipologiaMetaDTO;
-import dev.antoniogrillo.gestioneviaggi.entity.Meta;
 import dev.antoniogrillo.gestioneviaggi.entity.TipologiaMeta;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.validation.annotation.Validated;
