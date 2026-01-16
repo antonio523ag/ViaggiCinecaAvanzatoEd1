@@ -1,11 +1,10 @@
 package dev.antoniogrillo.gestioneviaggi.service.impl;
 
-import dev.antoniogrillo.gestioneviaggi.dto.request.AggiungiTipologia;
-import dev.antoniogrillo.gestioneviaggi.dto.response.TipologiaMetaDTO;
+import dev.antoniogrillo.gestioneviaggi.entity.Meta;
 import dev.antoniogrillo.gestioneviaggi.entity.TipologiaMeta;
-import dev.antoniogrillo.gestioneviaggi.mapper.TipologiaMetaMapper;
 import dev.antoniogrillo.gestioneviaggi.repository.TipologiaRepository;
 import dev.antoniogrillo.gestioneviaggi.service.def.TipologiaMetaService;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -13,37 +12,37 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class TipologiaMetaServiceImpl implements TipologiaMetaService {
 
     private final TipologiaRepository repo;
-    private final TipologiaMetaMapper mapper;
 
     @Override
-    public List<TipologiaMetaDTO> getTipologie(int numeroPagina) {
-        Sort s= Sort.by("nome").ascending();
+    public List<TipologiaMeta> getTipologie(int numeroPagina) {
+                Sort s= Sort.by("nome").ascending();
         Pageable pageable = PageRequest.of(numeroPagina, 10, s);
-        List<TipologiaMeta> tipologie=repo.findAll(pageable).getContent();
-        return mapper.toTipologiaMetaDTO(tipologie);
+        return repo.findAll(pageable).getContent();
     }
 
     @Override
-    public TipologiaMetaDTO aggiungi(AggiungiTipologia request) {
-        TipologiaMeta t=repo.findByNome(request.nome()).orElse(mapper.toTipologiaMeta(request));
-        t=repo.save(t);
-        return mapper.toTipologiaMetaDTO(t);
+    @Transactional
+    public TipologiaMeta aggiungi(TipologiaMeta request) {
+        TipologiaMeta t=repo.findByNome(request.getNome()).orElse(null);
+        if(t!=null)return t;
+        return repo.save(request);
     }
 
     @Override
-    public TipologiaMetaDTO getTipologia(long id) {
-        TipologiaMeta t=repo.findById(id).orElseThrow(()->new RuntimeException("nessuna tipologia con questo id"));
-        return mapper.toTipologiaMetaDTO(t);
+    public Optional<TipologiaMeta> getTipologiaById(long id) {
+        return repo.findById(id);
     }
 
     @Override
     public List<TipologiaMeta> findAllByIds(List<Long> longs) {
         return repo.findAllById(longs);
     }
+
 }
