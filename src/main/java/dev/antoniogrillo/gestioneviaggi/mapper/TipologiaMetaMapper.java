@@ -1,6 +1,6 @@
 package dev.antoniogrillo.gestioneviaggi.mapper;
 
-import dev.antoniogrillo.gestioneviaggi.dto.request.AggiungiTipologia;
+import dev.antoniogrillo.gestioneviaggi.dto.request.AggiungiTipologiaDTO;
 import dev.antoniogrillo.gestioneviaggi.dto.response.TipologiaMetaDTO;
 import dev.antoniogrillo.gestioneviaggi.entity.TipologiaMeta;
 import org.springframework.stereotype.Component;
@@ -18,7 +18,7 @@ public class TipologiaMetaMapper {
         return tipologie.stream().map(this::toTipologiaMetaDTO).toList();
     }
 
-    public TipologiaMeta toTipologiaMeta(AggiungiTipologia request) {
+    public TipologiaMeta toTipologiaMeta(AggiungiTipologiaDTO request) {
         TipologiaMeta t=new TipologiaMeta();
         t.setNome(request.nome());
         return t;

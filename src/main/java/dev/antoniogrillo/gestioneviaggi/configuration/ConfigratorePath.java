@@ -27,6 +27,7 @@ public class ConfigratorePath {
                         .requestMatchers("/all/**").permitAll()
                         .requestMatchers("/authorized/**").authenticated()
                         .requestMatchers("/admin/**").hasRole(Ruolo.ADMIN.name())
+                        .requestMatchers("/graphql").permitAll()
                         .anyRequest().permitAll()
                 ).authenticationProvider(provider)
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);

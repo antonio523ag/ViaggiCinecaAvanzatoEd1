@@ -27,7 +27,6 @@ public class RecensioneViaggio {
     @Size(min = 1,max = 5,message = "Il voto deve essere compreso tra 1 e 5")
     private int voto;
     @NotBlank(message = "La descrizione della recensione è obbligatoria")
-    @Lob
     private String descrizione;
     @ManyToOne
     @JoinColumn(name = "utente_fk",nullable = false)

@@ -1,6 +1,6 @@
 package dev.antoniogrillo.gestioneviaggi.facade.def;
 
-import dev.antoniogrillo.gestioneviaggi.dto.request.AggiungiTipologia;
+import dev.antoniogrillo.gestioneviaggi.dto.request.AggiungiTipologiaDTO;
 import dev.antoniogrillo.gestioneviaggi.dto.response.TipologiaMetaDTO;
 
 import java.util.List;
@@ -10,5 +10,5 @@ public interface TipologiaMetaFacade {
 
     TipologiaMetaDTO getTipologia(long id);
 
-    TipologiaMetaDTO aggiungi(AggiungiTipologia request);
+    TipologiaMetaDTO aggiungi(AggiungiTipologiaDTO request);
 }

@@ -1,9 +1,6 @@
 package dev.antoniogrillo.gestioneviaggi.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -41,6 +38,8 @@ public class Utente implements UserDetails{
     private LocalDate dataNascita;
     @NotNull(message = "Il ruolo è obbligatorio")
     private Ruolo ruolo;
+    @OneToMany(mappedBy = "utente")
+    private List<RecensioneViaggio> recensioni;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

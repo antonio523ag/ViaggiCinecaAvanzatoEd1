@@ -39,13 +39,13 @@ public class RecensioneController {
     }
 
     @PostMapping("/authorized/recensione")
-    public ResponseEntity<Long> getRecensioni(@RequestBody AggiungiRecensioneDTO request, @AuthenticationPrincipal Utente utente){
+    public ResponseEntity<Long> aggiungiRecensione(@RequestBody AggiungiRecensioneDTO request, @AuthenticationPrincipal Utente utente){
         RecensioneViaggio r= facade.salva(request,utente);
         return ResponseEntity.ok(r.getId());
     }
 
     @DeleteMapping("/admin/recensione/{id}")
-    public ResponseEntity<Void> getRecensioni(@PathVariable long id){
+    public ResponseEntity<Void> cancellaRecensione(@PathVariable long id){
         facade.elimina(id);
         return ResponseEntity.ok().build();
     }

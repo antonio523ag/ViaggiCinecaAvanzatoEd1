@@ -1,0 +1,104 @@
+type Meta{
+    id:ID!
+    nome:String!
+    tipologie:[TipologiaMeta]
+    recensioni:[RecensioneViaggio]
+}
+
+type RecensioneViaggio{
+    id:ID!
+    dataPartenza:String
+    dataRitorno:String
+    voto:Int
+    descrizione:String
+    utente:Utente!
+    meta:Meta!
+
+}
+
+type TipologiaMeta{
+    id:ID!
+    nome:String!
+    mete:[Meta]
+}
+
+type Utente{
+    id:ID!
+    nome: String
+    cognome: String
+    email: String
+    dataNascita: String
+    ruolo: String
+    recensioni:[RecensioneViaggio]
+}
+
+type LoginGraphResponse{
+    token:String!
+    utente:Utente!
+}
+
+
+
+
+
+
+
+type Query{
+    getMete(numeroPagina:Int!): [Meta]
+    getMetePerTipologia(idTipologia: ID!,numeroPagina:Int):[Meta]
+    getMeta(id:ID!):Meta!
+    getVisitate(numeroPagina:Int):[Meta]
+    getDaVisitare(numeroPagina:Int):[Meta]
+    getRecensione(id:ID!):RecensioneViaggio!
+    getRecensioni(numeroPagina:Int):[RecensioneViaggio]
+    getRecensioniUtente(idUtente:ID!,numeroPagina:Int):[RecensioneViaggio]
+    getRecensioniMeta(idMeta:ID!,numeroPagina:Int):[RecensioneViaggio]
+    getTipologie(numeroPagina:Int):[TipologiaMeta]
+    getTipologia(id:ID!):TipologiaMeta
+    getUtenti(numeroPagina:Int):[Utente]
+    login(input:LoginRequestDTO):LoginGraphResponse!
+}
+
+type Mutation{
+    creaMeta(input:AggiungiMetaDTO):ID!
+    eliminaMeta(id:ID!):Boolean
+    aggiungiRecensione(input:AggiungiRecensioneGraphQL):ID!
+    cancellaRecensione(id:ID!):Boolean
+    aggiungiTipologia(input:AggiungiTipologiaDTO):ID!
+    registraUtente(input: RegistrazioneUtenteGraphQL!): ID!
+    registraAdmin(input: RegistrazioneUtenteGraphQL!): ID!
+    deleteUtente(id:ID!):Boolean
+}
+
+input LoginRequestDTO{
+    username:String!
+    password:String!
+}
+
+input AggiungiTipologiaDTO{
+    nome:String!
+}
+
+input AggiungiMetaDTO{
+    nome:String!
+    idTipologie:[ID!]!
+}
+
+input AggiungiRecensioneGraphQL{
+    idMeta:ID!
+    dataPartenza:String!
+    dataRitorno: String!
+    punteggio:Int
+    testo:String
+}
+
+input RegistrazioneUtenteGraphQL{
+    nome:String!
+    cognome:String!
+    email:String!
+    dataNascita:String!
+    password:String!
+}
+
+
+

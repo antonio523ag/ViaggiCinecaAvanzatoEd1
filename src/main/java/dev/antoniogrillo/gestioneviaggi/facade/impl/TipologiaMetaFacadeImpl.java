@@ -1,6 +1,6 @@
 package dev.antoniogrillo.gestioneviaggi.facade.impl;
 
-import dev.antoniogrillo.gestioneviaggi.dto.request.AggiungiTipologia;
+import dev.antoniogrillo.gestioneviaggi.dto.request.AggiungiTipologiaDTO;
 import dev.antoniogrillo.gestioneviaggi.dto.response.TipologiaMetaDTO;
 import dev.antoniogrillo.gestioneviaggi.entity.TipologiaMeta;
 import dev.antoniogrillo.gestioneviaggi.facade.def.TipologiaMetaFacade;
@@ -33,7 +33,7 @@ public class TipologiaMetaFacadeImpl implements TipologiaMetaFacade {
     }
 
     @Override
-    public TipologiaMetaDTO aggiungi(AggiungiTipologia request) {
+    public TipologiaMetaDTO aggiungi(AggiungiTipologiaDTO request) {
         TipologiaMeta t=mapper.toTipologiaMeta(request);
         t=service.aggiungi(t);
         return mapper.toTipologiaMetaDTO(t);

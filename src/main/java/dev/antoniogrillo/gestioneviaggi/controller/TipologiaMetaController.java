@@ -1,6 +1,6 @@
 package dev.antoniogrillo.gestioneviaggi.controller;
 
-import dev.antoniogrillo.gestioneviaggi.dto.request.AggiungiTipologia;
+import dev.antoniogrillo.gestioneviaggi.dto.request.AggiungiTipologiaDTO;
 import dev.antoniogrillo.gestioneviaggi.dto.response.TipologiaMetaDTO;
 import dev.antoniogrillo.gestioneviaggi.facade.def.TipologiaMetaFacade;
 import lombok.RequiredArgsConstructor;
@@ -27,7 +27,7 @@ public class TipologiaMetaController {
     }
 
     @PostMapping("/admin/tipologie")
-    public ResponseEntity<TipologiaMetaDTO> aggiungi(@RequestBody AggiungiTipologia request){
+    public ResponseEntity<TipologiaMetaDTO> aggiungi(@RequestBody AggiungiTipologiaDTO request){
         TipologiaMetaDTO t= facade.aggiungi(request);
         return ResponseEntity.ok(t);
     }
