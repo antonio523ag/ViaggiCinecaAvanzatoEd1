@@ -13,6 +13,8 @@ public class GraphQLExceptionResolver extends DataFetcherExceptionResolverAdapte
 
     @Override
     protected GraphQLError resolveToSingleError(Throwable ex, DataFetchingEnvironment env) {
+        System.out.println("errore");
+        System.out.println(ex.getMessage());
 
         if (ex instanceof EntityNotFoundException) {
             return GraphqlErrorBuilder.newError(env)
