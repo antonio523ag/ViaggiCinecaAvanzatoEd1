@@ -45,7 +45,7 @@ public class UtenteMapper {
     }
 
     public RegistrazioneRequestDTO toRegistrazioneRequestDTO(RegistrazioneUtenteGraphQL input) {
-        LocalDate dataNascita=null;
+        LocalDate dataNascita;
         try{
             dataNascita=LocalDate.parse(input.dataNascita());
         }catch (DateTimeException e){

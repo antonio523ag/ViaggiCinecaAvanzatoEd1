@@ -49,13 +49,13 @@ public class RecensioneMapper {
 
 
     public AggiungiRecensioneDTO toAggiungiRecensioneDTO(AggiungiRecensioneGraphQL request) {
-        LocalDate dataPartenza=null;
+        LocalDate dataPartenza;
         try {
             dataPartenza=LocalDate.parse(request.dataPartenza());
         }catch (DateTimeException e){
             throw new GraphQLException("la data "+request.dataPartenza()+" non è una data valida", ErrorType.BAD_REQUEST);
         }
-        LocalDate dataRitorno=null;
+        LocalDate dataRitorno;
         try {
             dataRitorno=LocalDate.parse(request.dataRitorno());
         }catch (DateTimeException e){

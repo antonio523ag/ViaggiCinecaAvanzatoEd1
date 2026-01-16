@@ -34,7 +34,6 @@ public class GraphQLExceptionResolver extends DataFetcherExceptionResolverAdapte
                     .errorType(e.getCode())
                     .build();
         }
-        ex.printStackTrace();
         return GraphqlErrorBuilder.newError(env)
                 .message("Errore interno")
                 .errorType(ErrorType.INTERNAL_ERROR)
